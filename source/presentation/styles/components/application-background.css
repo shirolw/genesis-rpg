@@ -1,0 +1,3 @@
+.application-background {
+  @apply absolute inset-0 bg-base overflow-hidden -z-10;
+}
