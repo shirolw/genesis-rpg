@@ -1,0 +1,40 @@
+.header-wrapper {
+  @apply w-full px-6 font-base bg-gradient-to-tr from-primary to-secondary/50 text-accent-light border-b-2 border-b-accent-light;
+}
+
+.header-wrapper > div {
+  @apply relative flex items-center justify-between max-w-7xl mx-auto h-20 px-6 lg:px-10;
+}
+
+header {
+  @apply w-fit text-sm flex-row items-center justify-between hidden lg:flex;
+}
+
+header .navigation-items-list {
+  @apply flex flex-row space-x-4 items-center justify-center;
+}
+
+header .navigation-items-list li {
+  @apply px-2 py-6 transition-colors duration-150 hover:text-accent hover:cursor-pointer;
+}
+
+.sidebar-container {
+  @apply fixed inset-0 bg-gradient-to-tl from-secondary/90 to-base text-accent-light z-10;
+}
+
+.sidebar-container nav {
+  @apply flex flex-col items-center h-full justify-center;
+}
+
+.sidebar-container .navigation-items-list li {
+  @apply w-full text-center py-6 my-auto first:pt-0 last:pb-0 hover:underline hover:underline-offset-8 hover:cursor-pointer;
+}
+
+.sidebar-container .navigation-items-list li.current,
+header .navigation-items-list li.current {
+  @apply text-accent underline underline-offset-8 hover:text-primary-light transition-colors duration-150;
+}
+
+.header-wrapper .toggle-button {
+  @apply rounded-lg bg-base p-2 transition-colors duration-150 z-10 hover:bg-gradient-to-tr hover:from-primary/50 hover:to-secondary/50 hover:ring hover:ring-primary lg:hidden;
+}

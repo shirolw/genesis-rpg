@@ -1,6 +1,8 @@
 import { Fragment, PropsWithChildren } from "react";
 import { RecoilRoot } from "recoil";
-import Universe from "../common/applicationBackground/Universe";
+
+import Universe from "@/presentation/components/common/applicationBackground/Universe";
+import Header from "@/presentation/components/common/Header";
 
 type TBackground = "universe" | "none";
 
@@ -20,10 +22,12 @@ export default function DefaultLayout({
   return (
     <RecoilRoot>
       <div className="flex flex-col min-h-screen w-screen max-w-[100vw] overflow-x-hidden relative">
-        <div className="grow-0">{/* HEADER SLOT */}</div>
+        <div className="grow-0">
+          <Header />
+        </div>
 
         <div className="grow">
-          <main className="w-full max-w-7xl grid-cols-12 mx-auto px-6 lg:px-10">
+          <main className="w-full max-w-7xl grid-cols-12 mx-auto my-2 px-6 lg:px-10">
             {children}
           </main>
         </div>
