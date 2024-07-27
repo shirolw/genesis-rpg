@@ -5,22 +5,37 @@ interface IStarProps {
   xAxis: number;
   yAxis: number;
   zAxis: number;
+  color: string;
 }
 
-const STARS_NUMBER = 1000;
+const STARS_NUMBER = 2000;
 
-const STARS_SPEED = 0.5;
+const STARS_SPEED = 0.2;
+
+const STARS_COLORS = [
+  "#d8d5f4",
+  "#eebcef",
+  "#a74b94",
+  "#4c2b64",
+  "#271338",
+  "#0f0d3e",
+];
 
 const stars: IStarProps[] = [];
 
 export default function Universe(): JSX.Element {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
+  function getRandomColor(): string {
+    return STARS_COLORS[Math.floor(Math.random() * STARS_COLORS.length)];
+  }
+
   function handleStartStars(canvasWidth: number, canvasHeight: number): void {
     const newStars: IStarProps[] = Array.from({ length: STARS_NUMBER }, () => ({
       xAxis: Math.random() * canvasWidth - canvasWidth / 2,
       yAxis: Math.random() * canvasHeight - canvasHeight / 2,
       zAxis: Math.random() * canvasWidth,
+      color: getRandomColor(),
     }));
 
     newStars.forEach((star) => stars.push(star));
@@ -40,6 +55,7 @@ export default function Universe(): JSX.Element {
         star.xAxis = Math.random() * canvasWidth - canvasWidth / 2;
         star.yAxis = Math.random() * canvasHeight - canvasHeight / 2;
         star.zAxis = canvasWidth;
+        star.color = getRandomColor();
       }
 
       const projectionFactor = 128.0 / star.zAxis;
@@ -57,11 +73,9 @@ export default function Universe(): JSX.Element {
 
         const starColorCalc = (1 - star.zAxis / canvasWidth) * 255;
 
-        const starShade = parseInt(starColorCalc.toString(), 10);
-
         canvasContext.beginPath();
 
-        canvasContext.fillStyle = `rgb(${starShade}, ${starShade}, ${starShade})`;
+        canvasContext.fillStyle = star.color;
 
         canvasContext.arc(projectedX, projectedY, starSize, 0, Math.PI * 2);
 
