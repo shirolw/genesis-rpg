@@ -1,4 +1,4 @@
-import { PropsWithChildren, ReactNode } from "react";
+import { ElementType, PropsWithChildren } from "react";
 
 type TTitleLevel = "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
 
@@ -13,10 +13,13 @@ export default function GlassCard({
   children,
   titleLevel = "h1",
 }: IGlassCardProps): JSX.Element {
+  const HeadTag = `${titleLevel}` as ElementType;
+
   return (
-    <div className="rounded-lg bg-primary/90 px-4 py-6 shadow-lg bg-clip-padding backdrop-blur border border-gray-200 w-full">
+    <div className="glass-card">
       <div>
-        {title}
+        <HeadTag className="base-heading versalete">{title}</HeadTag>
+
         {children}
       </div>
     </div>
